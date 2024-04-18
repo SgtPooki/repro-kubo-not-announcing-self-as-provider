@@ -63,7 +63,7 @@ console.log('routing/v1 providers: ', routingProviders)
 // list providers via kuboNode.api.routing.findProviders
 const dhtProviders = []
 try {
-  for await (const provs of kuboNode.api.dht.findProvs(CID.parse('bafybeifq2rzpqnqrsdupncmkmhs3ckxxjhuvdcbvydkgvch3ms24k5lo7q'), {signal: AbortSignal.timeout(2000)})) {
+  for await (const provs of kuboNode.api.dht.findProvs(CID.parse('bafybeifq2rzpqnqrsdupncmkmhs3ckxxjhuvdcbvydkgvch3ms24k5lo7q'), {signal: AbortSignal.timeout(1000)})) {
     if (provs.providers != null) {
       dhtProviders.push(...provs.providers.map(p => p.id.toString()))
     }
