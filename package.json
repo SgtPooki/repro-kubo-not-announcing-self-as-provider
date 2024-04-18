@@ -1,0 +1,21 @@
+{
+  "name": "repro-kubo-not-announcing-self-as-provider",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "aegir": "^42.2.5",
+    "ipfsd-ctl": "^13.0.0",
+    "it-drain": "^3.0.5",
+    "kubo": "^0.28.0",
+    "kubo-rpc-client": "^3.0.4",
+    "multiformats": "^13.1.0"
+  }
+}
