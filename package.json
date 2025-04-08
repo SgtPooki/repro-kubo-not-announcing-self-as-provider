@@ -11,11 +11,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "aegir": "^42.2.5",
-    "ipfsd-ctl": "^13.0.0",
-    "it-drain": "^3.0.5",
-    "kubo": "^0.28.0",
-    "kubo-rpc-client": "^3.0.4",
-    "multiformats": "^13.1.0"
+    "aegir": "^45.1.4",
+    "ipfsd-ctl": "^15.0.2",
+    "it-drain": "^3.0.8",
+    "kubo": "^0.34.1",
+    "kubo-rpc-client": "^5.1.0",
+    "multiformats": "^13.3.2"
   }
 }

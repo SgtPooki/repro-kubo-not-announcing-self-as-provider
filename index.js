@@ -1,7 +1,7 @@
 // @ts-check
-import { createController } from 'ipfsd-ctl'
+import { createNode } from 'ipfsd-ctl'
 import { path as kuboPath } from 'kubo'
-import * as kuboRpcClient from 'kubo-rpc-client'
+import { createKuboRPCClient } from 'kubo-rpc-client'
 import loadFixture from 'aegir/fixtures'
 import drain from 'it-drain'
 import { CID } from 'multiformats/cid'
@@ -13,11 +13,12 @@ async function loadFixtureDataCar (controller, path) {
 }
 
 async function createKuboNode () {
-  return createController({
-    kuboRpcModule: kuboRpcClient,
-    ipfsBin: kuboPath(),
+  return createNode({
+    type: 'kubo',
+    rpc: createKuboRPCClient,
+    bin: kuboPath(),
     // test: true,
-    ipfsOptions: {
+    init: {
       config: {
         Addresses: {
           Swarm: [
@@ -53,9 +54,10 @@ const kuboNodePeerId = (await kuboNode.api.id()).id.toString()
 console.log('peerId:', kuboNodePeerId)
 await loadFixtureDataCar(kuboNode, 'gateway-conformance-fixtures.car')
 console.log('loaded gateway conformance fixtures')
+const info = await kuboNode.info()
 
 // now try to call routing endpoint
-const resp = await fetch(`http://${kuboNode.api.gatewayHost}:${kuboNode.api.gatewayPort}/routing/v1/providers/bafybeifq2rzpqnqrsdupncmkmhs3ckxxjhuvdcbvydkgvch3ms24k5lo7q`)
+const resp = await fetch(`${info.gateway}/routing/v1/providers/bafybeifq2rzpqnqrsdupncmkmhs3ckxxjhuvdcbvydkgvch3ms24k5lo7q`)
 const routingProviders = (await resp.json()).Providers.map(p => p.ID)
 
 console.log('routing/v1 providers: ', routingProviders)
